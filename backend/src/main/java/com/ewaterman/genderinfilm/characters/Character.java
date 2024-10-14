@@ -1,13 +1,7 @@
 package com.ewaterman.genderinfilm.characters;
 
 import io.micrometer.common.util.StringUtils;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,17 +27,21 @@ public class Character {
 
     @Id
     @GeneratedValue
+    @Column(name="id", nullable=false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable=false)
+    @JoinColumn(name="movie_id", nullable=false)
     private Movie movie;
 
-    @OneToMany(mappedBy = "character_question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="character", cascade=CascadeType.ALL)
     private List<CharacterQuestion> questions;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name="type", nullable=false)
     private CharacterType type;
 
+    @Column(name="name")
     private String name;
 
     /**
