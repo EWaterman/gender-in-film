@@ -1,0 +1,26 @@
+services:
+#  app:
+#    image: 'docker-spring-boot-postgres:latest'
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: app
+#    depends_on:
+#      - db
+#    environment:
+#      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/genderinfilm'
+#      - 'SPRING_DATASOURCE_USERNAME=postgres'
+#      - 'SPRING_DATASOURCE_PASSWORD=postgres'
+#    ports:
+#      - '8081:8080'
+
+  db:
+    image: 'postgres:latest'
+    container_name: db
+    restart: always
+    environment:
+      - 'POSTGRES_DB=genderinfilm'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+    ports:
+      - '5432:5432'

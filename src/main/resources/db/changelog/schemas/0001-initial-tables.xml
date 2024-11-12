@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!--  Create all the initial tables  -->
+    <changeSet id="0001-0" author="ewaterman">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="movie"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="movie">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tmdb_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0001-1" author="ewaterman">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="movie_question"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="movie_question">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="movie_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_question_movie" references="movie(id)"/>
+            </column>
+            <column name="question" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="varchar">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0001-2" author="ewaterman">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="character"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="character">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="movie_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_character_movie" references="movie(id)"/>
+            </column>
+            <column name="type" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0001-3" author="ewaterman">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="character_question"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="character_question">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="character_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_question_character" references="character(id)"/>
+            </column>
+            <column name="question" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="varchar">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

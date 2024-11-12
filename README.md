@@ -1,51 +1,43 @@
 # Gender In Film
 
-## About
+A SpringBoot webapp for analysing transgender and gender non-conforming representation in film.
+Kind of like a transgender [Bechdel Test](https://bechdeltest.com/).
 
-Why am I doing this?
+
+## Usage Instructions
+Navigate to (insert url here) and search for the movie that you'd like to know about!
 
 
 ## App Info
-
-
-### Frontend
-- TBD
-
-### Backend
-- SpringBoot 3.3.2 with Java 22
+- SpringBoot 3.3.2 with Java 22 and Thymeleaf
 - Postgres database
 - Liquibase for database migrations
 
 
 ## TODO
-- create dockerfile for generating jar so that Java isn't a dev requirement anymore
+- spring security to allow people to log in and add new movies/characters
+- create dockerfile for generating jar so that Java isn't a deployment requirement anymore
 - create indexes on all tables
-
-
-## Installation Instructions
-- [Install Docker](https://www.docker.com/)
-
-That's it! All other dependencies are managed from within Docker.
 
 
 ## Developer Instructions
 
 
 ### Setup
-- Make sure to install Java 22.
+- Install Java 22.
 
 
 ### Running The App Via Docker
-1. `cd /backend`
+1. [Install Docker](https://www.docker.com/)
 2. `./mvnw spring-boot:run`
 
-Internally, this run `docker-compose up` which will start the `api` backend and postgres `db` in Docker containers.
+Internally, this run `docker-compose up` which will start the application and postgres in Docker containers
+(`app` and `db` respectively).
 
 
-#### Running The App Via JAR
-1. `cd /backend`
-2. `mvn package`
-3. `java -jar target/genderinfilm-0.0.1.jar`
+### Running The App Via JAR
+1. `mvn package`
+2. `java -jar target/genderinfilm-0.0.1.jar`
 
 
 ### Creating A New Release
@@ -62,7 +54,7 @@ To debug the postgres container: `docker exec -it db psql -U postgres -d genderi
 
 ### Troubleshooting
 
-- If you make changes to Dockerfile, remember to run `docker-compose build --no-cache` before `docker-compose up`
+- If you make changes to the Dockerfile, remember to run `docker-compose build --no-cache` before `docker-compose up`
 - If there are any dangling containers, run `docker-compose down` to clean them up.
 
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="~{layouts/root.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <section layout:fragment="content">
+        <div class="container">
+            <h2>Add Or Update Movie</h2>
+
+            <form th:action="@{/movies/save}" th:object="${movie}" method="POST">
+
+                <!-- TODO: Add search bar that looks up TMDB by name. Autofills in name and tmdbId with result. -->
+                <label for="movie-input-name" class="form-label">Name</label>
+                <input id="movie-input-name" type="text" th:field="*{name}" class="form-control" readonly="readonly">
+
+                <input id="movie-input-tmdbId" type="hidden" th:field="*{tmdbId}" class="form-control">
+
+                <!-- Movie questions. -->
+                <div th:each="question, iterator : *{questions}">
+
+                    <p th:text="${question.question.displayText}"></p>
+                    <!--<p th:text="${question.question.extendedDisplayText}"></p>-->
+
+                    <input type="hidden" th:field="*{questions[__${iterator.index}__].question}" class="form-control">
+
+                    <label th:for="'movie-question-answer' + ${iterator.index}" class="form-label">Answer</label>
+                    <select th:id="'movie-question-answer' + ${iterator.index}" th:field="*{questions[__${iterator.index}__].answer}">
+                         <option th:each="answer : ${answerTypes}"
+                                 th:value="${answer}"
+                                 th:text="${answer.displayText}"></option>
+                     </select>
+
+                    <label th:for="'movie-question-details' + ${iterator.index}" class="form-label">Details</label>
+                    <input th:id="'movie-question-details' + ${iterator.index}" type="text" th:field="*{questions[__${iterator.index}__].details}" class="form-control" readonly="readonly">
+                 </div>
+
+                <button type="submit" class="btn btn-info col-2">Save Movie</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="~{layouts/root.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <section layout:fragment="content">
+        <!-- imdb section with movie poster on left, movie info on right -->
+        <div th:if="${imdb != null}">
+        </div>
+
+        <!-- Show movie test results -->
+        <div th:if="${#lists.isEmpty(movie.questions)}">
+            <p>movie questinos</p>
+        </div>
+
+        <!-- If no characters -->
+        <div th:if="${#lists.isEmpty(movie.characters)}">
+            <p>We don't have any characters for this movie in our system. Does the movie have gender-queer representation? <a th:href="@{/characters}">Add a character to our database!</a></p>
+        </div>
+
+        <!-- Else have characters -->
+        <div th:if="${not #lists.isEmpty(movie.characters)}">
+            <!-- in a loop, list every character. Image on left, details on right. Each stat can be expanded via dropdown to read more if there's a long description -->
+            <p>char questinos</p>
+        </div>
+    </section>
+
+</body>
+</html>

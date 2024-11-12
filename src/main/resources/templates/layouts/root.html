@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gender In Film</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+    <!-- Can be linked to with #top to jump back to the top of the page. -->
+    <a id="top"></a>
+
+    <!-- Navbar -->
+    <header th:insert="~{components/nav::navbar}"></header>
+
+    <!-- Main content -->
+    <main id="root-main">
+        <section layout:fragment="content"></section>
+    </main>
+
+    <!-- Footer -->
+    <footer th:replace="~{components/footer::footer}"></footer>
+</body>
+</html>

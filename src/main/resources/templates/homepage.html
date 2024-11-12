@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="~{layouts/root.html}">
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <section layout:fragment="content">
+        <h1>Gender In Film</h1>
+        <h3>A quantitative investigation into how gender-queer characters are represented in film.</h3>
+
+        <h4>Look up a movie in the searchbar below to see how its gender-queer characters are represented.</h4>
+
+        <!-- search bar -->
+
+        <h4>Are we missing a movie that has gender-queer representation?<a th:href="@{/movies/create}">Add it to our database!</a></h4>
+
+        <!-- short summary why that leads into... -->
+
+        <!-- summary stats -->
+
+        <h4>Here are some great links you can check out if you want to learn more:</h4>
+        <ul>
+            <li><a href="https://www.disclosurethemovie.com/about">DISCLOSURE</a>: A history of transgender representation in film and the influence that (mostly bad) representation has on society's perception of gender-queer people.</li>
+            <li>X</li>
+            <li>X</li>
+        </ul>
+    </section>
+</body>
+</html>
