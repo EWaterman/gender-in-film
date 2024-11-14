@@ -2,10 +2,7 @@ package com.ewaterman.genderinfilm.characters;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import com.ewaterman.genderinfilm.common.BooleanAnswer;
 import com.ewaterman.genderinfilm.movies.Movie;
@@ -20,14 +17,14 @@ import java.util.List;
  * This can be refactored in the future if needed.
  */
 @Entity
-@ToString
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Character {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private Long id;
 

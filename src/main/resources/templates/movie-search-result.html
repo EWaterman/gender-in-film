@@ -1,0 +1,9 @@
+<!-- List out the results of searching for movies -->
+<div id="movie-list-min-container-inner">
+    <div th:each="movie : ${searchedMovies}">
+        <div class="movie-list-min-entry" onclick="location.href='#'">
+            <span th:text="${ movie.name }"></span>
+        </div>
+        <hr>
+    </div>
+</div>

@@ -18,6 +18,10 @@ public class MovieService {
         return movieRepository.findById(id);
     }
 
+    public List<Movie> findByNameIgnoreCaseContaining(String name) {
+        return movieRepository.findByNameIgnoreCaseContaining(name);
+    }
+
     /**
      * Fetch a movie by id and populate it with any questions that it doesn't already have. This makes updating
      * the movie much simpler for the frontend.

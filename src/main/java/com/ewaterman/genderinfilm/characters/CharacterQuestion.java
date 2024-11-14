@@ -2,23 +2,20 @@ package com.ewaterman.genderinfilm.characters;
 
 import com.ewaterman.genderinfilm.common.BooleanAnswer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * Represents a single question pertaining to a character.
  */
 @Entity
-@ToString
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CharacterQuestion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private Long id;
 
